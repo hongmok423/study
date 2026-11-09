@@ -54,6 +54,7 @@ h2{font-size:clamp(1.55rem,4vw,2.1rem);margin:0 0 .4em}
 h3{font-size:1.25rem;margin:0 0 .3em}
 p{margin:.4em 0 .8em}
 img,svg{max-width:100%}
+#pencil,#pHandle{touch-action:none}
 nav{
   position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);
   border-bottom:2px solid var(--line);
@@ -443,6 +444,8 @@ function play(id,t){
 $$('[data-say]').forEach((b,i)=>b.addEventListener('click',()=>play(String(i+1).padStart(2,'0'),b.dataset.say)));
 
 function svgPoint(svg,e){const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse());}
+function near(svg,el,e,rad){const p=svgPoint(svg,e);return Math.hypot(p.x-(+el.getAttribute('cx')),p.y-(+el.getAttribute('cy')))<rad;}
+function lockTouch(svg,el,rad){svg.addEventListener('touchstart',e=>{if(e.touches.length===1&&near(svg,el,e.touches[0],rad))e.preventDefault();},{passive:false});svg.addEventListener('touchmove',e=>{if(svg.__drag)e.preventDefault();},{passive:false});}
 
 /* ---------- 1. 띠종이 원 ---------- */
 (function(){
@@ -464,13 +467,14 @@ function svgPoint(svg,e){const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.cli
   };
   $('#spinReset').onclick=()=>{cancelAnimationFrame(raf);a=0;draw();};
   let maxA=0;
-  pe.addEventListener('pointerdown',e=>{drag=true;cancelAnimationFrame(raf);pe.setPointerCapture(e.pointerId);});
-  pe.addEventListener('pointermove',e=>{
+  lockTouch(svg,pe,45);
+  svg.addEventListener('pointerdown',e=>{if(!near(svg,pe,e,45))return;drag=svg.__drag=true;cancelAnimationFrame(raf);svg.setPointerCapture(e.pointerId);});
+  svg.addEventListener('pointermove',e=>{
     if(!drag)return;const p=svgPoint(svg,e);
     let ang=Math.atan2(p.x-cx,-(p.y-cy));if(ang<0)ang+=2*Math.PI;
     if(a>5.6&&ang<0.6)ang=2*Math.PI; a=ang;draw();
   });
-  pe.addEventListener('pointerup',()=>drag=false);
+  ['pointerup','pointercancel'].forEach(ev=>svg.addEventListener(ev,()=>{drag=svg.__drag=false;}));
   draw();
 })();
 
@@ -509,9 +513,10 @@ function svgPoint(svg,e){const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.cli
   $$('[data-mode]').forEach(b=>b.addEventListener('click',()=>{
     mode=b.dataset.mode;$$('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',x===b));render();
   }));
-  h.addEventListener('pointerdown',e=>{drag=true;h.setPointerCapture(e.pointerId);});
-  h.addEventListener('pointermove',e=>{if(!drag)return;const p=svgPoint(svg,e);ang=Math.atan2(p.y-cy,p.x-cx);render();});
-  h.addEventListener('pointerup',()=>drag=false);
+  lockTouch(svg,h,45);
+  svg.addEventListener('pointerdown',e=>{if(!near(svg,h,e,45))return;drag=svg.__drag=true;svg.setPointerCapture(e.pointerId);});
+  svg.addEventListener('pointermove',e=>{if(!drag)return;const p=svgPoint(svg,e);ang=Math.atan2(p.y-cy,p.x-cx);render();});
+  ['pointerup','pointercancel'].forEach(ev=>svg.addEventListener(ev,()=>{drag=svg.__drag=false;}));
   render();
 
   // chord
