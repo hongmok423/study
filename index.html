@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>3학년 2학기 수학 ‘원’ 수행평가 대비</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F7F5; --surface:#FFFFFF; --ink:#1E2A44; --muted:#5B6782;
+  --grid:rgba(47,111,237,.10); --line:#D5E0EA;
+  --blue:#2F6FED; --green:#139660; --orange:#F07A12; --pink:#E0436A;
+  --soft-blue:#E6EEFF; --soft-green:#E2F5EC; --soft-orange:#FFF0E0; --soft-pink:#FDE6EC;
+  --ok:#139660; --no:#D23B5E;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111827; --surface:#1A2333; --ink:#E8EEF8; --muted:#9AA8C2;
+    --grid:rgba(120,160,255,.10); --line:#2C3A52;
+    --blue:#6E9BFF; --green:#3FCB8E; --orange:#FFA24C; --pink:#FF6F92;
+    --soft-blue:#1E2B48; --soft-green:#153428; --soft-orange:#3A2814; --soft-pink:#3B1A26;
+    --ok:#3FCB8E; --no:#FF6F92;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111827; --surface:#1A2333; --ink:#E8EEF8; --muted:#9AA8C2;
+  --grid:rgba(120,160,255,.10); --line:#2C3A52;
+  --blue:#6E9BFF; --green:#3FCB8E; --orange:#FFA24C; --pink:#FF6F92;
+  --soft-blue:#1E2B48; --soft-green:#153428; --soft-orange:#3A2814; --soft-pink:#3B1A26;
+  --ok:#3FCB8E; --no:#FF6F92;
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+  font-size:17px;line-height:1.7;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+h1,h2,h3,.jua{font-family:"Jua","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-weight:400;line-height:1.3}
+h1{font-size:clamp(2rem,6vw,3.3rem);margin:.2em 0 .3em}
+h2{font-size:clamp(1.55rem,4vw,2.1rem);margin:0 0 .4em}
+h3{font-size:1.25rem;margin:0 0 .3em}
+p{margin:.4em 0 .8em}
+img,svg{max-width:100%}
+nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);
+  border-bottom:2px solid var(--line);
+}
+nav .in{max-width:980px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:8px 12px;scrollbar-width:none}
+nav a{flex:none;text-decoration:none;color:var(--muted);font-family:"Jua",sans-serif;padding:6px 12px;border-radius:999px;font-size:1rem}
+nav a:hover,nav a:focus-visible{background:var(--soft-blue);color:var(--blue)}
+main{max-width:980px;margin:0 auto;padding:0 16px 80px}
+section{padding:48px 0 8px}
+.panel{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:22px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.hero{padding-top:28px}
+.hero .lead{font-size:1.12rem;color:var(--muted);max-width:34em}
+.say{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:999px;padding:4px 12px;font:inherit;font-size:.92rem;cursor:pointer;vertical-align:middle}
+.say:hover{border-color:var(--blue);color:var(--blue)}
+button{font:inherit;cursor:pointer}
+.btn{border:none;border-radius:12px;padding:9px 16px;background:var(--blue);color:#fff;font-family:"Jua",sans-serif;font-size:1.02rem}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn.ghost[aria-pressed="true"]{border-color:var(--blue);background:var(--soft-blue);color:var(--blue)}
+.btn:focus-visible,.say:focus-visible,nav a:focus-visible,input:focus-visible,.opt:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.stage{width:100%;height:auto;display:block;background:var(--surface);border-radius:16px}
+.readout{font-family:"Jua",sans-serif;font-size:1.25rem}
+.tag{display:inline-block;border-radius:8px;padding:0 8px;font-family:"Jua",sans-serif}
+.t-c{background:var(--soft-pink);color:var(--pink)}
+.t-r{background:var(--soft-green);color:var(--green)}
+.t-d{background:var(--soft-orange);color:var(--orange)}
+.t-b{background:var(--soft-blue);color:var(--blue)}
+/* SVG ink */
+.s-ink{stroke:var(--ink);fill:none}
+.s-r{stroke:var(--green)}
+.s-d{stroke:var(--orange)}
+.s-b{stroke:var(--blue)}
+.s-p{stroke:var(--pink)}
+.f-ink{fill:var(--ink)} .f-c{fill:var(--pink)} .f-r{fill:var(--green)} .f-d{fill:var(--orange)} .f-b{fill:var(--blue)} .f-m{fill:var(--muted)}
+.f-surface{fill:var(--surface)}
+svg text{font-family:"Jua","Apple SD Gothic Neo",sans-serif}
+/* summary formula */
+.formula{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;font-family:"Jua",sans-serif;font-size:clamp(1.3rem,4vw,1.9rem);
+  background:var(--soft-blue);border-radius:18px;padding:18px;margin:18px 0}
+.formula .eq{color:var(--muted)}
+/* property cards */
+.props{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.prop{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:14px}
+.prop svg{width:100%;height:auto;display:block}
+.prop p{margin:.4em 0 0;font-size:.98rem}
+.spin{transform-origin:60px 60px;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.spin{animation:none}}
+/* compass */
+.steps{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.steps li{border:2px solid var(--line);border-radius:14px;padding:10px 14px;background:var(--surface);transition:border-color .2s,background .2s}
+.steps li.on{border-color:var(--blue);background:var(--soft-blue)}
+.steps b{font-family:"Jua",sans-serif;font-weight:400;color:var(--blue);margin-right:6px}
+.warn{background:var(--soft-pink);border-radius:14px;padding:12px 16px;margin-top:14px}
+.warn h3{color:var(--pink);font-size:1.1rem}
+.warn ul{margin:0;padding-left:1.2em}
+/* pattern */
+.drawn{stroke-dasharray:100;stroke-dashoffset:100;animation:draw .9s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion: reduce){.drawn{animation:none;stroke-dashoffset:0}}
+.rule{min-height:3.2em;background:var(--soft-green);border-radius:12px;padding:10px 14px;margin-top:10px}
+/* practice */
+.score{position:sticky;top:calc(env(safe-area-inset-top,0px) + 54px);z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;
+  background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:8px 14px;margin-bottom:14px}
+.bar{flex:1;height:10px;background:var(--line);border-radius:99px;overflow:hidden;max-width:300px}
+.bar i{display:block;height:100%;width:0;background:var(--green);transition:width .4s}
+.qs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.q{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column}
+.q.ok{border-color:var(--ok)} .q.no{border-color:var(--no)}
+.q .num{font-family:"Jua",sans-serif;color:var(--blue)}
+.q .lv{font-size:.85rem;color:var(--orange);margin-left:6px}
+.q svg{width:100%;height:auto;margin:6px 0;background:var(--paper);border-radius:12px}
+.q .ask{margin:.2em 0 .6em}
+.ans{display:flex;gap:8px;align-items:center;margin-top:auto;flex-wrap:wrap}
+.ans input{width:90px;font:inherit;font-size:1.1rem;padding:6px 10px;border:2px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.opt{border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:6px 12px}
+.opt.sel-ok{border-color:var(--ok);background:var(--soft-green)}
+.opt.sel-no{border-color:var(--no);background:var(--soft-pink)}
+.fb{margin-top:10px;font-size:.96rem;display:none}
+.fb.show{display:block}
+.fb .h{font-family:"Jua",sans-serif}
+.fb.ok .h{color:var(--ok)} .fb.no .h{color:var(--no)}
+.hintb{background:none;border:none;color:var(--muted);text-decoration:underline;padding:0;font-size:.92rem}
+.model{display:none;background:var(--soft-blue);border-radius:12px;padding:10px 12px;margin-top:10px;font-size:.96rem}
+.model.show{display:block}
+textarea{width:100%;font:inherit;padding:8px 10px;border:2px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);min-height:80px;resize:vertical}
+/* checklist */
+.check{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.check label{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:10px 14px;cursor:pointer}
+.check input{width:22px;height:22px;margin-top:3px;accent-color:var(--green);flex:none}
+.done-msg{font-family:"Jua",sans-serif;color:var(--green);font-size:1.2rem;margin-top:12px;min-height:1.5em}
+table.sum{width:100%;border-collapse:collapse;font-size:1rem}
+table.sum th,table.sum td{border-bottom:2px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+table.sum th{font-family:"Jua",sans-serif;font-weight:400;white-space:nowrap}
+.scroll{overflow-x:auto}
+footer{color:var(--muted);font-size:.9rem;text-align:center;padding:30px 16px}
+</style>
+</head>
+<body>
+<nav aria-label="단원 목차"><div class="in">
+  <a href="#start">원이란?</a><a href="#parts">중심·반지름·지름</a><a href="#props">원의 성질</a>
+  <a href="#compass">컴퍼스</a><a href="#pattern">원으로 모양</a><a href="#summary">한눈에 정리</a>
+  <a href="#practice">연습 문제</a><a href="#check">점검표</a>
+</div></nav>
+
+<main>
+<!-- 1. 원이란 -->
+<section class="hero" id="start">
+  <div class="two">
+    <div>
+      <h1>동그란 ‘원’을<br>파헤쳐 보자!</h1>
+      <p class="lead">누름 못에 띠종이를 끼우고 연필을 한 바퀴 돌리면 원이 그려져요. 연필은 언제나 누름 못에서 <b>똑같은 거리</b>만큼 떨어져 있어요.</p>
+      <p><button class="say" data-say="원이란 무엇일까요? 누름 못에 띠종이를 끼우고 연필을 한 바퀴 돌리면 원이 그려져요. 연필은 언제나 누름 못에서 똑같은 거리만큼 떨어져 있어요. 그래서 원은, 한 점에서 같은 거리에 있는 점들을 모두 이은 동그란 모양이에요.">🔊 설명 듣기</button></p>
+      <div class="row">
+        <button class="btn" id="spinBtn">연필 한 바퀴 돌리기</button>
+        <button class="btn ghost" id="spinReset">지우기</button>
+      </div>
+      <p class="readout">누름 못 ↔ 연필 거리: <span id="spinDist" class="tag t-r">4 cm</span> <small style="color:var(--muted)">(돌려도 그대로!)</small></p>
+      <p style="color:var(--muted);font-size:.95rem">연필(주황 점)을 손가락이나 마우스로 끌어서 직접 돌려 봐도 돼요.</p>
+    </div>
+    <svg class="stage" id="spinSvg" viewBox="0 0 300 300" role="img" aria-label="누름 못과 띠종이로 원 그리기">
+      <rect x="0" y="0" width="300" height="300" rx="16" class="f-surface"/>
+      <path id="trace" class="s-b" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <line id="strip" x1="150" y1="150" x2="150" y2="45" stroke="var(--green)" stroke-width="12" stroke-linecap="round" opacity=".35"/>
+      <line id="string" x1="150" y1="150" x2="150" y2="45" class="s-r" stroke-width="3"/>
+      <circle cx="150" cy="150" r="9" class="f-c"/>
+      <text x="150" y="182" text-anchor="middle" class="f-c" font-size="15">누름 못</text>
+      <circle id="pencil" cx="150" cy="45" r="11" class="f-d" style="cursor:grab"/>
+    </svg>
+  </div>
+  <div class="panel" style="margin-top:22px">
+    <h3>원이란?</h3>
+    <p style="margin:0">원은 <b>한 점에서 같은 거리에 있는 점들을 모두 이어서 만든 동그란 모양</b>이에요. 우리 주변의 동전, 시계, 바퀴, 접시도 원 모양이에요. 원은 곧은 선(변)도 뾰족한 점(꼭짓점)도 없어요.</p>
+  </div>
+</section>
+
+<!-- 2. 중심 반지름 지름 -->
+<section id="parts">
+  <h2>원의 중심, 반지름, 지름 <button class="say" data-say="원을 그릴 때 누름 못을 꽂았던 점을 원의 중심이라고 해요. 원의 중심과 원 위의 한 점을 이은 선분을 반지름이라고 해요. 원 위의 두 점을 이은 선분이 원의 중심을 지날 때, 이 선분을 지름이라고 해요. 지름은 반지름의 두 배예요.">🔊 듣기</button></h2>
+  <div class="two">
+    <div>
+      <p><span class="tag t-c">원의 중심</span> 원을 그릴 때 누름 못(컴퍼스 침)을 꽂았던 점. 원의 한가운데 점이에요. 보통 점 ㅇ으로 나타내요.</p>
+      <p><span class="tag t-r">반지름</span> 원의 중심과 원 위의 한 점을 이은 선분.</p>
+      <p><span class="tag t-d">지름</span> 원 위의 두 점을 이은 선분 중에서 <b>원의 중심을 지나는</b> 선분.</p>
+      <div class="row" role="group" aria-label="보기 선택">
+        <button class="btn ghost" data-mode="r" aria-pressed="true">반지름</button>
+        <button class="btn ghost" data-mode="d" aria-pressed="false">지름</button>
+        <button class="btn ghost" data-mode="mr" aria-pressed="false">반지름 여러 개</button>
+        <button class="btn ghost" data-mode="md" aria-pressed="false">지름 여러 개</button>
+      </div>
+      <label class="row" style="margin:6px 0">반지름 크기
+        <input type="range" id="rSlider" min="2" max="6" step="0.5" value="4" style="flex:1;min-width:140px;accent-color:var(--green)">
+      </label>
+      <p class="readout">반지름 <span id="rOut" class="tag t-r">4 cm</span> → 지름 <span id="dOut" class="tag t-d">8 cm</span></p>
+      <p style="color:var(--muted);font-size:.95rem">원 위의 파란 점을 끌어서 선분을 돌려 보세요. 어디로 돌려도 길이가 같아요.</p>
+    </div>
+    <svg class="stage" id="partsSvg" viewBox="0 0 320 320" role="img" aria-label="원의 중심, 반지름, 지름 탐구">
+      <rect width="320" height="320" rx="16" class="f-surface"/>
+      <circle id="pCircle" cx="160" cy="160" r="96" class="s-ink" stroke-width="3"/>
+      <g id="pMulti"></g>
+      <line id="pLine" x1="160" y1="160" x2="256" y2="160" stroke-width="5" stroke-linecap="round" class="s-r"/>
+      <text id="pLabel" x="0" y="0" font-size="16" class="f-r" text-anchor="middle"></text>
+      <circle cx="160" cy="160" r="6" class="f-c"/>
+      <text x="150" y="186" font-size="16" class="f-c" text-anchor="end">ㅇ</text>
+      <circle id="pHandle" cx="256" cy="160" r="11" class="f-b" style="cursor:grab"/>
+    </svg>
+  </div>
+
+  <div class="panel" style="margin-top:22px">
+    <h3>원 안에서 가장 긴 선분은?</h3>
+    <p>원 위의 두 점을 이어 보세요. 두 점 사이를 넓힐수록 선분이 길어지다가, <b>원의 중심을 지날 때 가장 길어져요.</b> 그 선분이 바로 지름이에요.</p>
+    <div class="two">
+      <svg class="stage" id="chordSvg" viewBox="0 0 300 260" role="img" aria-label="원 위의 두 점을 이은 선분 길이 비교">
+        <rect width="300" height="260" rx="16" class="f-surface"/>
+        <circle cx="150" cy="130" r="100" class="s-ink" stroke-width="3"/>
+        <circle cx="150" cy="130" r="5" class="f-c"/>
+        <line id="chord" class="s-b" stroke-width="5" stroke-linecap="round"/>
+        <circle id="cA" r="7" class="f-b"/><circle id="cB" r="7" class="f-b"/>
+      </svg>
+      <div>
+        <label class="row">두 점 사이 벌리기
+          <input type="range" id="chSlider" min="20" max="180" value="70" style="flex:1;min-width:140px;accent-color:var(--blue)">
+        </label>
+        <p class="readout">선분 길이: <span id="chOut" class="tag t-b">4.6 cm</span></p>
+        <p id="chMsg" style="min-height:3em">반지름이 4 cm인 원이에요. 오른쪽 끝까지 밀어 보세요!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 성질 -->
+<section id="props">
+  <h2>원의 성질 네 가지 <button class="say" data-say="원의 성질을 알아봐요. 첫째, 한 원에서 반지름은 셀 수 없이 많이 그을 수 있고, 길이가 모두 같아요. 둘째, 한 원에서 지름도 셀 수 없이 많이 그을 수 있고, 길이가 모두 같아요. 셋째, 지름은 원을 똑같이 둘로 나눠요. 넷째, 지름은 원 안에 그을 수 있는 가장 긴 선분이고, 반지름의 두 배예요.">🔊 듣기</button></h2>
+  <div class="props">
+    <div class="prop">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="48" class="s-ink" stroke-width="2.5"/>
+        <g class="spin"><g class="s-r" stroke-width="2.5">
+          <line x1="60" y1="60" x2="108" y2="60"/><line x1="60" y1="60" x2="84" y2="101.6"/><line x1="60" y1="60" x2="36" y2="101.6"/>
+          <line x1="60" y1="60" x2="12" y2="60"/><line x1="60" y1="60" x2="36" y2="18.4"/><line x1="60" y1="60" x2="84" y2="18.4"/></g></g>
+        <circle cx="60" cy="60" r="4" class="f-c"/></svg>
+      <h3>① 반지름은 무수히 많고 모두 같아요</h3>
+      <p>한 원에서 반지름은 셀 수 없이 많이 그을 수 있고, 길이가 모두 같아요.</p>
+    </div>
+    <div class="prop">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="48" class="s-ink" stroke-width="2.5"/>
+        <g class="spin"><g class="s-d" stroke-width="2.5">
+          <line x1="12" y1="60" x2="108" y2="60"/><line x1="36" y1="18.4" x2="84" y2="101.6"/><line x1="84" y1="18.4" x2="36" y2="101.6"/></g></g>
+        <circle cx="60" cy="60" r="4" class="f-c"/></svg>
+      <h3>② 지름도 무수히 많고 모두 같아요</h3>
+      <p>지름은 모두 원의 중심을 지나요. 한 원에서 지름의 길이는 모두 같아요.</p>
+    </div>
+    <div class="prop">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <path d="M12 60 A48 48 0 0 1 108 60 Z" fill="var(--soft-blue)"/>
+        <path d="M12 60 A48 48 0 0 0 108 60 Z" fill="var(--soft-green)"/>
+        <circle cx="60" cy="60" r="48" class="s-ink" stroke-width="2.5"/>
+        <line x1="12" y1="60" x2="108" y2="60" class="s-d" stroke-width="3"/>
+        <circle cx="60" cy="60" r="4" class="f-c"/></svg>
+      <h3>③ 지름은 원을 똑같이 둘로 나눠요</h3>
+      <p>지름을 따라 원을 접으면 두 부분이 꼭 맞게 겹쳐요.</p>
+    </div>
+    <div class="prop">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="48" class="s-ink" stroke-width="2.5"/>
+        <line x1="12" y1="60" x2="108" y2="60" class="s-d" stroke-width="3"/>
+        <line x1="60" y1="60" x2="108" y2="60" class="s-r" stroke-width="3" transform="translate(0,-8)"/>
+        <line x1="12" y1="60" x2="60" y2="60" class="s-r" stroke-width="3" transform="translate(0,-8)"/>
+        <line x1="24" y1="91" x2="96" y2="91" class="s-b" stroke-width="2.5" stroke-dasharray="4 3"/>
+        <circle cx="60" cy="60" r="4" class="f-c"/></svg>
+      <h3>④ 지름이 가장 길고, 반지름의 2배</h3>
+      <p>지름은 원 안에 그을 수 있는 가장 긴 선분이에요. 반지름 2개를 이은 길이와 같아요.</p>
+    </div>
+  </div>
+  <div class="formula" aria-label="지름은 반지름의 2배">
+    <span class="tag t-d">지름</span><span class="eq">=</span><span class="tag t-r">반지름</span><span class="eq">×</span><span>2</span>
+    <span class="eq" style="margin:0 6px">│</span>
+    <span class="tag t-r">반지름</span><span class="eq">=</span><span class="tag t-d">지름</span><span class="eq">÷</span><span>2</span>
+  </div>
+</section>
+
+<!-- 4. 컴퍼스 -->
+<section id="compass">
+  <h2>컴퍼스로 원 그리기 <button class="say" data-say="컴퍼스로 원을 그리는 방법이에요. 첫째, 원의 중심이 될 점 ㅇ을 정해요. 둘째, 컴퍼스를 원의 반지름만큼 벌려요. 자의 0 눈금에 침을, 반지름 눈금에 연필심을 맞춰요. 셋째, 컴퍼스의 침을 점 ㅇ에 꽂아요. 넷째, 손잡이를 잡고 한쪽 방향으로 돌려서 원을 그려요. 컴퍼스는 지름이 아니라 반지름만큼 벌린다는 것을 꼭 기억하세요.">🔊 듣기</button></h2>
+  <div class="two">
+    <svg class="stage" id="cmpSvg" viewBox="0 0 340 300" role="img" aria-label="컴퍼스로 원 그리기 단계별 애니메이션">
+      <rect width="340" height="300" rx="16" class="f-surface"/>
+      <circle id="cmpArc" cx="140" cy="170" r="90" fill="none" class="s-b" stroke-width="4" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+      <g id="ruler" opacity="0">
+        <rect x="128" y="176" width="204" height="34" rx="4" fill="var(--soft-orange)" stroke="var(--orange)" stroke-width="2"/>
+        <g id="ticks"></g>
+      </g>
+      <g id="cmpCenter" opacity="0"><circle cx="140" cy="170" r="5" class="f-c"/><text x="130" y="160" font-size="16" class="f-c" text-anchor="end">ㅇ</text></g>
+      <g id="compassG" opacity="0">
+        <line id="legN" x1="140" y1="170" x2="185" y2="60" class="s-ink" stroke-width="5" stroke-linecap="round"/>
+        <line id="legP" x1="230" y1="170" x2="185" y2="60" stroke="var(--muted)" stroke-width="5" stroke-linecap="round"/>
+        <circle id="tipP" cx="230" cy="170" r="5" class="f-b"/>
+        <circle id="hinge" cx="185" cy="60" r="8" class="f-ink"/>
+        <rect id="handle" x="181" y="30" width="8" height="24" rx="3" class="f-d"/>
+        <circle id="needlePulse" cx="140" cy="170" r="10" fill="none" class="s-p" stroke-width="3" opacity="0"/>
+      </g>
+    </svg>
+    <div>
+      <ol class="steps" id="cmpSteps">
+        <li data-s="1"><b>1단계</b>원의 중심이 될 점 ㅇ을 정해요.</li>
+        <li data-s="2"><b>2단계</b>컴퍼스를 <u>반지름</u>만큼 벌려요. 자의 눈금 0에 침, 3에 연필심을 맞춰요(반지름 3 cm).</li>
+        <li data-s="3"><b>3단계</b>컴퍼스의 침을 점 ㅇ에 꽂아요.</li>
+        <li data-s="4"><b>4단계</b>손잡이를 잡고 한쪽 방향으로 돌려 원을 그려요.</li>
+      </ol>
+      <div class="row">
+        <button class="btn ghost" id="cmpPrev">이전</button>
+        <button class="btn" id="cmpNext">다음 단계</button>
+        <button class="btn ghost" id="cmpReset">처음부터</button>
+      </div>
+    </div>
+  </div>
+  <div class="warn">
+    <h3>이런 실수 조심!</h3>
+    <ul>
+      <li>지름이 6 cm인 원을 그릴 때 컴퍼스를 6 cm 벌리면 안 돼요. <b>6 ÷ 2 = 3 cm</b>만 벌려야 해요.</li>
+      <li>돌리는 동안 컴퍼스 다리를 꽉 쥐면 벌어진 길이가 바뀌어요. <b>손잡이</b>만 살짝 잡아요.</li>
+      <li>침이 미끄러지지 않게 점 ㅇ에 꼭 꽂고, 종이를 살짝 기울이듯 한 방향으로 돌려요.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5. 모양 -->
+<section id="pattern">
+  <h2>원을 이용하여 여러 가지 모양 그리기 <button class="say" data-say="원을 이용하여 모양을 그릴 때는 두 가지를 살펴봐요. 원의 중심이 어떻게 옮겨 가는지, 그리고 반지름이 어떻게 변하는지예요. 이 두 가지 규칙을 찾으면 같은 모양을 똑같이 그릴 수 있어요.">🔊 듣기</button></h2>
+  <p>모양을 따라 그리려면 <span class="tag t-c">중심이 어디로 옮겨 가는지</span>와 <span class="tag t-r">반지름이 어떻게 변하는지</span>, 이 두 가지 규칙을 찾으면 돼요. 모눈 한 칸은 1 cm예요.</p>
+  <div class="panel">
+    <div class="row" role="group" aria-label="모양 고르기">
+      <button class="btn ghost" data-pat="target" aria-pressed="true">과녁 모양</button>
+      <button class="btn ghost" data-pat="chain" aria-pressed="false">사슬 모양</button>
+      <button class="btn ghost" data-pat="grow" aria-pressed="false">커지는 원</button>
+      <button class="btn ghost" data-pat="flower" aria-pressed="false">꽃 모양</button>
+    </div>
+    <svg class="stage" id="patSvg" viewBox="0 0 360 240" role="img" aria-label="원을 이용한 모양 그리기">
+      <defs><pattern id="g20" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="var(--line)" stroke-width="1"/></pattern></defs>
+      <rect width="360" height="240" rx="16" fill="url(#g20)"/>
+      <g id="patG"></g>
+    </svg>
+    <div class="row">
+      <button class="btn" id="patNext">원 하나 더 그리기</button>
+      <button class="btn ghost" id="patAll">모두 그리기</button>
+      <button class="btn ghost" id="patReset">처음부터</button>
+      <button class="btn ghost" id="patRule">규칙 보기</button>
+    </div>
+    <div class="rule" id="ruleBox">원을 하나씩 그려 보면서 규칙을 먼저 말해 보세요.</div>
+  </div>
+</section>
+
+<!-- 6. 정리 -->
+<section id="summary">
+  <h2>한눈에 정리</h2>
+  <div class="panel scroll">
+    <table class="sum">
+      <tr><th>원</th><td>한 점에서 같은 거리에 있는 점들을 이어 만든 동그란 모양</td></tr>
+      <tr><th><span class="tag t-c">원의 중심</span></th><td>원을 그릴 때 누름 못·컴퍼스 침을 꽂은 점. 원의 한가운데</td></tr>
+      <tr><th><span class="tag t-r">반지름</span></th><td>원의 중심과 원 위의 한 점을 이은 선분. 한 원에서 무수히 많고, 길이가 모두 같아요</td></tr>
+      <tr><th><span class="tag t-d">지름</span></th><td>원 위의 두 점을 이은 선분 중 원의 중심을 지나는 선분. 무수히 많고, 길이가 모두 같아요. 원을 둘로 똑같이 나누고, 원 안에서 가장 긴 선분이에요</td></tr>
+      <tr><th>관계</th><td><b>지름 = 반지름 × 2</b>, <b>반지름 = 지름 ÷ 2</b></td></tr>
+      <tr><th>컴퍼스</th><td>① 중심 정하기 ② 반지름만큼 벌리기 ③ 침 꽂기 ④ 한 방향으로 돌리기</td></tr>
+      <tr><th>모양 그리기</th><td>중심이 옮겨 가는 규칙 + 반지름이 변하는 규칙 찾기</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 7. 연습 -->
+<section id="practice">
+  <h2>연습 문제</h2>
+  <p>기본 → 응용 → 서술형 순서예요. ★ 표시는 조금 어려운 문제예요. 그림의 길이는 실제 길이가 아니에요.</p>
+  <div class="score"><span class="jua">맞힌 문제 <span id="scoreN">0</span> / <span id="scoreT">0</span></span><div class="bar"><i id="scoreBar"></i></div><button class="btn ghost" id="resetQ" style="padding:5px 12px">다시 풀기</button></div>
+  <div class="qs" id="qs"></div>
+</section>
+
+<!-- 8. 점검표 -->
+<section id="check">
+  <h2>수행평가 전날 점검표</h2>
+  <p>스스로 할 수 있으면 체크하세요. 모두 체크하면 준비 끝!</p>
+  <ul class="check" id="checkList">
+    <li><label><input type="checkbox">원의 중심, 반지름, 지름을 그림에서 찾아 이름을 말할 수 있어요.</label></li>
+    <li><label><input type="checkbox">반지름과 지름의 뜻을 내 말로 설명할 수 있어요.</label></li>
+    <li><label><input type="checkbox">한 원에서 반지름(지름)은 무수히 많고 길이가 모두 같다는 것을 알아요.</label></li>
+    <li><label><input type="checkbox">지름이 원 안에서 가장 긴 선분이고 원을 둘로 똑같이 나눈다는 것을 알아요.</label></li>
+    <li><label><input type="checkbox">반지름을 알면 지름을, 지름을 알면 반지름을 구할 수 있어요.</label></li>
+    <li><label><input type="checkbox">컴퍼스를 반지름만큼 벌려서 주어진 크기의 원을 그릴 수 있어요.</label></li>
+    <li><label><input type="checkbox">원으로 그린 모양을 보고 중심과 반지름의 규칙을 말할 수 있어요.</label></li>
+    <li><label><input type="checkbox">원 여러 개가 맞닿은 그림에서 선분의 길이를 구할 수 있어요.</label></li>
+  </ul>
+  <p class="done-msg" id="doneMsg" aria-live="polite"></p>
+  <div class="panel" style="margin-top:18px">
+    <h3>준비물 챙기기</h3>
+    <p style="margin:0">컴퍼스(다리 나사가 헐겁지 않은지 확인), 연필심이 침과 같은 높이로 맞춰져 있는지, 자, 지우개. 시험 전에 지름 6 cm, 반지름 4 cm 원을 한 번씩 그려 보면 좋아요.</p>
+  </div>
+</section>
+</main>
+<footer>초등학교 3학년 2학기 수학 ‘원’ 단원 학습 자료</footer>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const NS='http://www.w3.org/2000/svg';
+const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- 음성 ---------- */
+function speak(t){
+  try{
+    const s=window.speechSynthesis;
+    if(!s){alert('이 기기에서는 읽어 주기 기능을 쓸 수 없어요.');return;}
+    s.cancel();
+    const u=new SpeechSynthesisUtterance(t);u.lang='ko-KR';u.rate=0.92;
+    const v=s.getVoices().find(v=>v.lang&&v.lang.startsWith('ko'));if(v)u.voice=v;
+    s.speak(u);
+  }catch(e){}
+}
+$$('[data-say]').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.say)));
+
+function svgPoint(svg,e){const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse());}
+
+/* ---------- 1. 띠종이 원 ---------- */
+(function(){
+  const svg=$('#spinSvg'),cx=150,cy=150,r=105,tr=$('#trace'),st=$('#string'),sp=$('#strip'),pe=$('#pencil');
+  let a=0,raf=null,drag=false;
+  const pos=a=>[cx+r*Math.sin(a),cy-r*Math.cos(a)];
+  function draw(){
+    const [x,y]=pos(a);
+    [st,sp].forEach(l=>{l.setAttribute('x2',x);l.setAttribute('y2',y)});
+    pe.setAttribute('cx',x);pe.setAttribute('cy',y);
+    if(a<=0.001){tr.setAttribute('d','');return;}
+    if(a>=2*Math.PI-0.01){tr.setAttribute('d',`M${cx} ${cy-r}A${r} ${r} 0 1 1 ${cx} ${cy+r}A${r} ${r} 0 1 1 ${cx} ${cy-r}`);return;}
+    tr.setAttribute('d',`M${cx} ${cy-r}A${r} ${r} 0 ${a>Math.PI?1:0} 1 ${x.toFixed(2)} ${y.toFixed(2)}`);
+  }
+  $('#spinBtn').onclick=()=>{
+    cancelAnimationFrame(raf);const start=performance.now(),from=0,dur=reduce?10:3200;
+    const step=t=>{a=Math.min(2*Math.PI,from+(t-start)/dur*2*Math.PI);draw();if(a<2*Math.PI)raf=requestAnimationFrame(step);};
+    raf=requestAnimationFrame(step);
+  };
+  $('#spinReset').onclick=()=>{cancelAnimationFrame(raf);a=0;draw();};
+  let maxA=0;
+  pe.addEventListener('pointerdown',e=>{drag=true;cancelAnimationFrame(raf);pe.setPointerCapture(e.pointerId);});
+  pe.addEventListener('pointermove',e=>{
+    if(!drag)return;const p=svgPoint(svg,e);
+    let ang=Math.atan2(p.x-cx,-(p.y-cy));if(ang<0)ang+=2*Math.PI;
+    if(a>5.6&&ang<0.6)ang=2*Math.PI; a=ang;draw();
+  });
+  pe.addEventListener('pointerup',()=>drag=false);
+  draw();
+})();
+
+/* ---------- 2. 중심 반지름 지름 ---------- */
+(function(){
+  const svg=$('#partsSvg'),cx=160,cy=160,S=24;
+  const circ=$('#pCircle'),line=$('#pLine'),lab=$('#pLabel'),h=$('#pHandle'),multi=$('#pMulti');
+  let rc=4,ang=0,mode='r',drag=false;
+  function render(){
+    const r=rc*S; circ.setAttribute('r',r);
+    const x=cx+r*Math.cos(ang),y=cy+r*Math.sin(ang);
+    h.setAttribute('cx',x);h.setAttribute('cy',y);
+    multi.innerHTML='';
+    const isD=(mode==='d'||mode==='md');
+    line.setAttribute('class',isD?'s-d':'s-r');
+    const x0=isD?cx-r*Math.cos(ang):cx,y0=isD?cy-r*Math.sin(ang):cy;
+    line.setAttribute('x1',x0);line.setAttribute('y1',y0);line.setAttribute('x2',x);line.setAttribute('y2',y);
+    if(mode==='mr'||mode==='md'){
+      const n=mode==='mr'?12:6;
+      for(let i=1;i<n;i++){
+        const t=ang+i*(mode==='mr'?Math.PI*2/12:Math.PI/6),l=document.createElementNS(NS,'line');
+        l.setAttribute('x1',mode==='mr'?cx:cx-r*Math.cos(t));l.setAttribute('y1',mode==='mr'?cy:cy-r*Math.sin(t));
+        l.setAttribute('x2',cx+r*Math.cos(t));l.setAttribute('y2',cy+r*Math.sin(t));
+        l.setAttribute('class',mode==='mr'?'s-r':'s-d');l.setAttribute('stroke-width','2.5');l.setAttribute('opacity','.55');
+        multi.appendChild(l);
+      }
+    }
+    const len=isD?rc*2:rc;
+    const mx=isD?cx+(r*.5)*Math.cos(ang):cx+(r*.5)*Math.cos(ang),my=isD?cy+(r*.5)*Math.sin(ang):cy+(r*.5)*Math.sin(ang);
+    lab.setAttribute('x',mx+14*Math.sin(ang));lab.setAttribute('y',my-14*Math.cos(ang)+5);
+    lab.setAttribute('class',isD?'f-d':'f-r');
+    lab.textContent=(isD?'지름 ':'반지름 ')+len+' cm';
+    $('#rOut').textContent=rc+' cm';$('#dOut').textContent=(rc*2)+' cm';
+  }
+  $('#rSlider').addEventListener('input',e=>{rc=parseFloat(e.target.value);render();});
+  $$('[data-mode]').forEach(b=>b.addEventListener('click',()=>{
+    mode=b.dataset.mode;$$('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',x===b));render();
+  }));
+  h.addEventListener('pointerdown',e=>{drag=true;h.setPointerCapture(e.pointerId);});
+  h.addEventListener('pointermove',e=>{if(!drag)return;const p=svgPoint(svg,e);ang=Math.atan2(p.y-cy,p.x-cx);render();});
+  h.addEventListener('pointerup',()=>drag=false);
+  render();
+
+  // chord
+  const ccx=150,ccy=130,R=100,A=Math.PI*0.75;
+  function chord(){
+    const deg=+$('#chSlider').value,phi=deg*Math.PI/180;
+    const B=A+phi;
+    const ax=ccx+R*Math.cos(A),ay=ccy+R*Math.sin(A),bx=ccx+R*Math.cos(B),by=ccy+R*Math.sin(B);
+    const c=$('#chord');c.setAttribute('x1',ax);c.setAttribute('y1',ay);c.setAttribute('x2',bx);c.setAttribute('y2',by);
+    $('#cA').setAttribute('cx',ax);$('#cA').setAttribute('cy',ay);$('#cB').setAttribute('cx',bx);$('#cB').setAttribute('cy',by);
+    const len=2*4*Math.sin(phi/2);
+    const isD=deg>=180;
+    c.setAttribute('class',isD?'s-d':'s-b');
+    $('#chOut').textContent=(isD?'8':len.toFixed(1))+' cm';
+    $('#chOut').className='tag '+(isD?'t-d':'t-b');
+    $('#chMsg').innerHTML=isD?'<b style="color:var(--orange)">원의 중심을 지나요! 이 선분이 지름이고 가장 길어요 (반지름 4 cm × 2 = 8 cm).</b>':'아직 원의 중심을 지나지 않아요. 지름(8 cm)보다 짧아요.';
+  }
+  $('#chSlider').addEventListener('input',chord);chord();
+})();
+
+/* ---------- 4. 컴퍼스 ---------- */
+(function(){
+  const cx=140,cy=170,U=30; let step=0,R=0,raf=null;
+  const ticks=$('#ticks');
+  for(let i=0;i<=6;i++){
+    const x=cx+i*U;
+    const l=document.createElementNS(NS,'line');l.setAttribute('x1',x);l.setAttribute('x2',x);l.setAttribute('y1',176);l.setAttribute('y2',190);l.setAttribute('class','s-d');l.setAttribute('stroke-width','2');ticks.appendChild(l);
+    const t=document.createElementNS(NS,'text');t.setAttribute('x',x);t.setAttribute('y',205);t.setAttribute('text-anchor','middle');t.setAttribute('font-size','13');t.setAttribute('class','f-d');t.textContent=i;ticks.appendChild(t);
+  }
+  const g=$('#compassG'),arc=$('#cmpArc');
+  function setR(r){
+    R=r;const px=cx+r,hx=cx+r/2;
+    $('#legN').setAttribute('x2',hx);$('#legP').setAttribute('x1',px);$('#legP').setAttribute('x2',hx);
+    $('#tipP').setAttribute('cx',px);$('#hinge').setAttribute('cx',hx);$('#handle').setAttribute('x',hx-4);
+  }
+  function animR(to,cb){
+    const from=R,st=performance.now(),d=reduce?1:700;
+    const f=t=>{const k=Math.min(1,(t-st)/d);setR(from+(to-from)*k);if(k<1)raf=requestAnimationFrame(f);else cb&&cb();};
+    raf=requestAnimationFrame(f);
+  }
+  function show(){
+    cancelAnimationFrame(raf);
+    $$('#cmpSteps li').forEach(li=>li.classList.toggle('on',+li.dataset.s===step));
+    $('#cmpCenter').setAttribute('opacity',step>=1?1:0);
+    $('#ruler').setAttribute('opacity',step===2?1:0);
+    g.setAttribute('opacity',step>=2?1:0);
+    g.setAttribute('transform','');
+    $('#needlePulse').setAttribute('opacity',step===3?1:0);
+    arc.setAttribute('stroke-dashoffset',100);
+    if(step===2){setR(12);animR(90);}
+    else if(step>=3){setR(90);}
+    if(step===4){
+      const st=performance.now(),d=reduce?10:3000;
+      const f=t=>{const k=Math.min(1,(t-st)/d);g.setAttribute('transform',`rotate(${k*360} ${cx} ${cy})`);arc.setAttribute('stroke-dashoffset',100-100*k);if(k<1)raf=requestAnimationFrame(f);};
+      raf=requestAnimationFrame(f);
+    }
+    $('#cmpNext').textContent=step===4?'다시 돌리기':'다음 단계';
+  }
+  $('#cmpNext').onclick=()=>{step=step<4?step+1:4;show();};
+  $('#cmpPrev').onclick=()=>{step=Math.max(0,step-1);show();};
+  $('#cmpReset').onclick=()=>{step=0;show();};
+  setR(90);show();
+})();
+
+/* ---------- 5. 모양 ---------- */
+(function(){
+  const P={
+    target:{c:[[180,120,20],[180,120,40],[180,120,60],[180,120,80],[180,120,100]],
+      rule:'원의 중심은 그대로이고, 반지름이 1칸(1 cm)씩 늘어나요. 그래서 과녁처럼 보여요.'},
+    chain:{c:[[80,120,40],[120,120,40],[160,120,40],[200,120,40],[240,120,40],[280,120,40]],
+      rule:'반지름은 2 cm로 모두 같고, 원의 중심이 오른쪽으로 2칸(반지름만큼)씩 옮겨 가요. 그래서 다음 원이 앞 원의 중심을 지나요.'},
+    grow:{c:[[60,120,20],[80,120,40],[100,120,60],[120,120,80],[140,120,100]],
+      rule:'반지름이 1칸씩 커지고, 원의 중심도 오른쪽으로 1칸씩 옮겨 가요. 그래서 모든 원의 왼쪽 끝이 한 점에서 만나요.'},
+    flower:{c:[[180,120,40],[220,120,40],[140,120,40],[180,80,40],[180,160,40]],
+      rule:'반지름은 2 cm로 모두 같아요. 가운데 원의 중심에서 오른쪽·왼쪽·위·아래로 2칸(반지름만큼) 떨어진 곳이 다른 원들의 중심이에요.'}
+  };
+  let cur='target',n=0;
+  const G=$('#patG');
+  function add(i,anim){
+    const [x,y,r]=P[cur].c[i];
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',r);c.setAttribute('fill','none');
+    c.setAttribute('stroke',i%2?'var(--green)':'var(--blue)');c.setAttribute('stroke-width','3');c.setAttribute('pathLength','100');
+    if(anim)c.setAttribute('class','drawn');
+    G.appendChild(c);
+    const d=document.createElementNS(NS,'circle');d.setAttribute('cx',x);d.setAttribute('cy',y);d.setAttribute('r',4);d.setAttribute('class','f-c');G.appendChild(d);
+  }
+  function reset(){G.innerHTML='';n=0;$('#ruleBox').textContent='원을 하나씩 그려 보면서 규칙을 먼저 말해 보세요. (빨간 점이 원의 중심)';}
+  $('#patNext').onclick=()=>{if(n<P[cur].c.length){add(n,true);n++;}};
+  $('#patAll').onclick=()=>{while(n<P[cur].c.length){add(n,true);n++;}};
+  $('#patReset').onclick=reset;
+  $('#patRule').onclick=()=>{$('#ruleBox').textContent=P[cur].rule;speak(P[cur].rule);};
+  $$('[data-pat]').forEach(b=>b.addEventListener('click',()=>{
+    cur=b.dataset.pat;$$('[data-pat]').forEach(x=>x.setAttribute('aria-pressed',x===b));reset();
+  }));
+  reset();
+})();
+
+/* ---------- 7. 연습 문제 ---------- */
+const S=inner=>`<svg viewBox="0 0 240 160" role="img" aria-hidden="true">${inner}</svg>`;
+const C=(x,y,r,cls='s-ink')=>`<circle cx="${x}" cy="${y}" r="${r}" class="${cls}" fill="none" stroke-width="2.5"/>`;
+const D=(x,y)=>`<circle cx="${x}" cy="${y}" r="3.5" class="f-c"/>`;
+const L=(x1,y1,x2,y2,cls='s-r',dash='')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${cls}" stroke-width="3" ${dash?'stroke-dasharray="5 4"':''}/>`;
+const T=(x,y,t,cls='f-ink',sz=14)=>`<text x="${x}" y="${y}" class="${cls}" font-size="${sz}" text-anchor="middle">${t}</text>`;
+
+const figABC=S(C(120,80,60)+L(120,80,120,20,'s-r')+T(132,52,'ㄱ','f-r')+L(70,113.2,170,113.2,'s-b')+T(120,131,'ㄴ','f-b')+L(77.6,37.6,162.4,122.4,'s-d')+T(88,62,'ㄷ','f-d')+D(120,80)+T(108,86,'ㅇ','f-c'));
+
+const Q=[
+ {lv:'기본',ask:'반지름이 4 cm인 원의 지름은 몇 cm일까요?',svg:S(C(120,80,60)+L(120,80,180,80)+D(120,80)+T(150,72,'4 cm','f-r')),type:'num',ans:8,unit:'cm',
+  hint:'지름은 반지름의 몇 배일까요?',exp:'지름 = 반지름 × 2 이므로 4 × 2 = 8, 지름은 8 cm예요.'},
+ {lv:'기본',ask:'지름이 14 cm인 원의 반지름은 몇 cm일까요?',svg:S(C(120,80,60)+L(60,80,180,80,'s-d')+D(120,80)+T(120,72,'14 cm','f-d')),type:'num',ans:7,unit:'cm',
+  hint:'반지름은 지름의 절반이에요.',exp:'반지름 = 지름 ÷ 2 이므로 14 ÷ 2 = 7, 반지름은 7 cm예요.'},
+ {lv:'기본',ask:'점 ㅇ은 원의 중심이에요. 원의 <b>반지름</b>인 선분을 고르세요.',svg:figABC,type:'choice',opts:['선분 ㄱ','선분 ㄴ','선분 ㄷ'],ans:0,
+  hint:'반지름은 원의 중심과 원 위의 한 점을 이어요.',exp:'선분 ㄱ은 원의 중심 ㅇ과 원 위의 한 점을 이었으니 반지름이에요.'},
+ {lv:'기본',ask:'같은 그림에서 원의 <b>지름</b>인 선분을 고르세요.',svg:figABC,type:'choice',opts:['선분 ㄱ','선분 ㄴ','선분 ㄷ'],ans:2,
+  hint:'원 위의 두 점을 이으면서 원의 중심을 지나는 선분을 찾아요.',exp:'선분 ㄷ은 원의 중심을 지나니까 지름이에요. 선분 ㄴ은 원 위의 두 점을 이었지만 중심을 지나지 않아서 지름이 아니에요.'},
+ {lv:'기본',ask:'한 원에서 지름은 몇 개 그을 수 있을까요?',svg:S(C(120,80,60)+L(60,80,180,80,'s-d')+L(90,28,150,132,'s-d')+L(150,28,90,132,'s-d')+L(120,20,120,140,'s-d')+D(120,80)),type:'choice',opts:['1개','2개','셀 수 없이 많아요'],ans:2,
+  hint:'원의 중심을 지나는 선분은 어느 방향으로든 그을 수 있어요.',exp:'원의 중심을 지나기만 하면 어느 방향으로든 그을 수 있으므로 지름은 셀 수 없이 많아요. 길이는 모두 같아요.'},
+ {lv:'기본',ask:'반지름이 3 cm인 원을 그리려고 해요. 컴퍼스를 몇 cm 벌려야 할까요?',type:'choice',opts:['1.5 cm','3 cm','6 cm'],ans:1,
+  hint:'컴퍼스는 무엇만큼 벌릴까요?',exp:'컴퍼스는 반지름만큼 벌려요. 그래서 3 cm 벌려요.'},
+ {lv:'기본',ask:'그림처럼 컴퍼스를 벌려서 원을 그렸어요. 그린 원의 <b>지름</b>은 몇 cm일까요?',
+  svg:S('<rect x="20" y="100" width="200" height="34" rx="4" fill="var(--soft-orange)" stroke="var(--orange)" stroke-width="2"/>'+[0,1,2,3,4,5,6].map(i=>`<line x1="${30+i*30}" y1="100" x2="${30+i*30}" y2="112" class="s-d" stroke-width="2"/>`+T(30+i*30,128,i,'f-d',12)).join('')+L(30,100,105,26,'s-ink')+'<line x1="180" y1="100" x2="105" y2="26" stroke="var(--muted)" stroke-width="3"/>'+'<circle cx="105" cy="26" r="6" class="f-ink"/>'),
+  type:'num',ans:10,unit:'cm',hint:'컴퍼스를 벌린 길이가 반지름이에요. 0부터 연필심까지 몇 cm인가요?',exp:'컴퍼스를 5 cm 벌렸으니 반지름이 5 cm예요. 지름은 5 × 2 = 10 cm예요.'},
+ {lv:'응용',ask:'큰 원 안에 크기가 같은 작은 원 2개를 꼭 맞게 그렸어요. 작은 원의 반지름이 3 cm일 때, 큰 원의 지름은 몇 cm일까요?',
+  svg:S(C(120,80,60)+C(90,80,30,'s-b')+C(150,80,30,'s-b')+L(150,80,180,80)+D(150,80)+T(165,72,'3 cm','f-r')),type:'num',ans:12,unit:'cm',
+  hint:'큰 원의 지름 안에 작은 원의 지름이 몇 개 들어가나요?',exp:'작은 원의 지름은 3 × 2 = 6 cm예요. 큰 원의 지름은 작은 원의 지름 2개와 같으므로 6 × 2 = 12 cm예요.'},
+ {lv:'응용',ask:'직사각형 안에 반지름이 2 cm인 원 3개를 꼭 맞게 나란히 그렸어요. 직사각형의 가로는 몇 cm일까요?',
+  svg:S('<rect x="30" y="50" width="180" height="60" fill="none" class="s-b" stroke-width="2.5"/>'+C(60,80,30)+C(120,80,30)+C(180,80,30)+L(60,80,90,80)+D(60,80)+D(120,80)+D(180,80)+T(75,73,'2 cm','f-r',12)),type:'num',ans:12,unit:'cm',
+  hint:'직사각형의 가로에는 원의 지름이 몇 개 들어가나요?',exp:'원의 지름은 2 × 2 = 4 cm예요. 가로에는 지름이 3개 들어가므로 4 × 3 = 12 cm예요.'},
+ {lv:'응용',ask:'한 변이 10 cm인 정사각형 안에 원을 꼭 맞게 그렸어요. 원의 반지름은 몇 cm일까요?',
+  svg:S('<rect x="60" y="20" width="120" height="120" fill="none" class="s-b" stroke-width="2.5"/>'+C(120,80,60)+D(120,80)+T(120,14,'10 cm','f-b',13)),type:'num',ans:5,unit:'cm',
+  hint:'정사각형의 한 변의 길이는 원의 무엇과 같을까요?',exp:'원이 꼭 맞으므로 원의 지름은 정사각형의 한 변과 같은 10 cm예요. 반지름은 10 ÷ 2 = 5 cm예요.'},
+ {lv:'응용',ask:'반지름이 4 cm인 원 3개를 맞닿게 이어 그렸어요. 양 끝 원의 중심 ㄱ과 ㄴ을 이은 선분의 길이는 몇 cm일까요?',
+  svg:S(C(60,80,30)+C(120,80,30)+C(180,80,30)+L(60,80,180,80,'s-p',1)+L(60,80,60,50)+D(60,80)+D(120,80)+D(180,80)+T(60,100,'ㄱ','f-c')+T(180,100,'ㄴ','f-c')+T(44,62,'4 cm','f-r',12)),type:'num',ans:16,unit:'cm',
+  hint:'선분 ㄱㄴ 위에 반지름이 몇 개 있는지 세어 보세요.',exp:'선분 ㄱㄴ에는 반지름이 4개 있어요(ㄱ→가운데 원 중심이 반지름 2개, 가운데→ㄴ이 반지름 2개). 4 × 4 = 16 cm예요.'},
+ {lv:'응용 ★',ask:'반지름이 5 cm인 원 4개를 서로 맞닿게 놓고, 네 원의 중심을 이어 사각형을 만들었어요. 이 사각형의 네 변의 길이의 합은 몇 cm일까요?',
+  svg:S(C(90,50,30)+C(150,50,30)+C(90,110,30)+C(150,110,30)+'<rect x="90" y="50" width="60" height="60" fill="none" class="s-p" stroke-width="2.5" stroke-dasharray="5 4"/>'+D(90,50)+D(150,50)+D(90,110)+D(150,110)+L(150,50,180,50)+T(170,42,'5 cm','f-r',12)),type:'num',ans:40,unit:'cm',
+  hint:'사각형의 한 변은 반지름 몇 개의 길이일까요?',exp:'사각형의 한 변은 반지름 2개, 곧 5 × 2 = 10 cm예요. 네 변이 모두 10 cm이므로 10 × 4 = 40 cm예요.'},
+ {lv:'응용 ★',ask:'크기가 같은 두 원이 서로의 중심 ㄱ, ㄴ을 지나도록 그렸어요. 반지름이 6 cm일 때, 삼각형 ㄱㄴㄷ의 세 변의 길이의 합은 몇 cm일까요?',
+  svg:S(C(95,92,50)+C(145,92,50)+`<polygon points="95,92 145,92 120,48.7" fill="none" class="s-p" stroke-width="2.5"/>`+D(95,92)+D(145,92)+D(120,48.7)+T(88,110,'ㄱ','f-c')+T(152,110,'ㄴ','f-c')+T(120,40,'ㄷ','f-c')+T(120,150,'반지름 6 cm','f-r',12)),type:'num',ans:18,unit:'cm',
+  hint:'선분 ㄱㄴ, ㄱㄷ, ㄴㄷ은 각각 어느 원의 반지름일까요?',exp:'ㄱㄷ은 ㄱ이 중심인 원의 반지름, ㄴㄷ은 ㄴ이 중심인 원의 반지름, ㄱㄴ도 반지름이에요. 세 변이 모두 6 cm이므로 6 × 3 = 18 cm예요.'},
+ {lv:'서술형',ask:'반지름이 5 cm인 원의 지름은 몇 cm인지 구하고, <b>구하는 방법</b>을 설명해 보세요.',type:'open',
+  model:'지름은 반지름의 2배예요. 반지름이 5 cm이므로 5 × 2 = 10, 지름은 10 cm예요. (채점 포인트: “지름은 반지름의 2배”라는 까닭 + 식 + 답 단위)'},
+ {lv:'서술형',ask:'원 안에 그을 수 있는 선분 중에서 가장 긴 선분은 무엇인지 쓰고, 그 까닭을 설명해 보세요.',type:'open',
+  model:'가장 긴 선분은 지름이에요. 원 위의 두 점을 이은 선분은 원의 중심을 지날 때 가장 길어지는데, 원의 중심을 지나는 선분이 바로 지름이기 때문이에요.'},
+ {lv:'서술형',ask:'민준이는 지름이 8 cm인 원을 그리려고 컴퍼스를 8 cm 벌렸어요. 잘못된 점을 찾아 바르게 고쳐 보세요.',type:'open',
+  model:'컴퍼스는 지름이 아니라 반지름만큼 벌려야 해요. 지름이 8 cm인 원의 반지름은 8 ÷ 2 = 4 cm이므로 컴퍼스를 4 cm 벌려야 해요. 8 cm 벌리면 지름이 16 cm인 원이 그려져요.'}
+];
+
+const graded=Q.filter(q=>q.type!=='open').length;
+$('#scoreT').textContent=graded;
+const solved=new Set();
+function updScore(){$('#scoreN').textContent=solved.size;$('#scoreBar').style.width=(solved.size/graded*100)+'%';}
+
+function renderQ(){
+  const wrap=$('#qs');wrap.innerHTML='';solved.clear();updScore();
+  Q.forEach((q,i)=>{
+    const d=document.createElement('div');d.className='q';
+    let body=`<div><span class="num">${i+1}번</span><span class="lv">${q.lv}</span></div><p class="ask">${q.ask}</p>${q.svg||''}`;
+    if(q.type==='num')body+=`<div class="ans"><input type="number" inputmode="decimal" aria-label="${i+1}번 답"> <span>${q.unit}</span><button class="btn chk">확인</button><button class="hintb">힌트</button></div>`;
+    if(q.type==='choice')body+=`<div class="opts">${q.opts.map((o,j)=>`<button class="opt" data-j="${j}">${o}</button>`).join('')}</div><div style="margin-top:8px"><button class="hintb">힌트</button></div>`;
+    if(q.type==='open')body+=`<textarea aria-label="${i+1}번 답 쓰기" placeholder="여기에 내 생각을 써 보세요."></textarea><div class="row"><button class="btn ghost mdl">모범 답안 보기</button><button class="say rd">🔊 문제 듣기</button></div><div class="model">${q.model}</div>`;
+    body+=`<div class="fb" aria-live="polite"></div>`;
+    d.innerHTML=body;wrap.appendChild(d);
+    const fb=d.querySelector('.fb');
+    const hb=d.querySelector('.hintb');
+    if(hb)hb.onclick=()=>{fb.className='fb show';fb.innerHTML=`<span class="h">힌트</span> ${q.hint}`;};
+    const show=(ok)=>{
+      d.classList.toggle('ok',ok);d.classList.toggle('no',!ok);
+      fb.className='fb show '+(ok?'ok':'no');
+      fb.innerHTML=ok?`<span class="h">정답이에요!</span> ${q.exp}`:`<span class="h">다시 생각해 봐요.</span> ${q.hint}`;
+      if(ok){solved.add(i);updScore();}
+    };
+    if(q.type==='num'){
+      const inp=d.querySelector('input');
+      const go=()=>{if(inp.value===''){fb.className='fb show no';fb.innerHTML='<span class="h">답을 먼저 써 주세요.</span>';return;}show(parseFloat(inp.value)===q.ans);};
+      d.querySelector('.chk').onclick=go;inp.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+    }
+    if(q.type==='choice'){
+      d.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+        d.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel-ok','sel-no'));
+        const ok=+b.dataset.j===q.ans;b.classList.add(ok?'sel-ok':'sel-no');show(ok);
+      });
+    }
+    if(q.type==='open'){
+      d.querySelector('.mdl').onclick=()=>d.querySelector('.model').classList.toggle('show');
+      d.querySelector('.rd').onclick=()=>speak(q.ask.replace(/<[^>]+>/g,''));
+    }
+  });
+}
+$('#resetQ').onclick=renderQ;
+renderQ();
+
+/* ---------- 8. 점검표 ---------- */
+(function(){
+  const boxes=$$('#checkList input');
+  let saved=[];try{saved=JSON.parse(localStorage.getItem('circle-check')||'[]')}catch(e){saved=[]}
+  boxes.forEach((b,i)=>{b.checked=!!saved[i];b.addEventListener('change',upd);});
+  function upd(){
+    const st=boxes.map(b=>b.checked);
+    try{localStorage.setItem('circle-check',JSON.stringify(st))}catch(e){}
+    const n=st.filter(Boolean).length;
+    $('#doneMsg').textContent=n===boxes.length?'모두 체크했어요! 수행평가 준비 끝, 자신 있게 보고 오세요.':(n?`${boxes.length-n}개 남았어요.`:'');
+  }
+  upd();
+})();
+})();
+</script>
+</body>
+</html>
